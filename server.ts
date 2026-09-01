@@ -23,14 +23,14 @@ try {
 
 // Fallback in-memory data store for maximum resilience
 const BASE_STOCKS: Record<string, any> = {
-  RELIANCE: { ticker: "RELIANCE", name: "Reliance Industries Ltd", sector: "Energy & Retail", current_price: 2942.50, open: 2920.0, high: 2958.0, low: 2915.0, prev_close: 2925.0, change: 17.50, change_pct: 0.60, volume: 4820000, beta: 1.15 },
-  TCS: { ticker: "TCS", name: "Tata Consultancy Services", sector: "Information Tech", current_price: 4185.00, open: 4160.0, high: 4210.0, low: 4150.0, prev_close: 4170.0, change: 15.00, change_pct: 0.36, volume: 2150000, beta: 0.85 },
-  HDFCBANK: { ticker: "HDFCBANK", name: "HDFC Bank Limited", sector: "Financial Services", current_price: 1648.20, open: 1635.0, high: 1655.0, low: 1630.0, prev_close: 1640.0, change: 8.20, change_pct: 0.50, volume: 6300000, beta: 1.05 },
-  INFY: { ticker: "INFY", name: "Infosys Limited", sector: "Information Tech", current_price: 1824.60, open: 1845.0, high: 1850.0, low: 1818.0, prev_close: 1842.0, change: -17.40, change_pct: -0.94, volume: 3900000, beta: 1.20 },
-  ICICIBANK: { ticker: "ICICIBANK", name: "ICICI Bank Ltd", sector: "Financial Services", current_price: 1215.80, open: 1205.0, high: 1222.0, low: 1202.0, prev_close: 1208.0, change: 7.80, change_pct: 0.65, volume: 4100000, beta: 1.10 },
-  TATAMOTORS: { ticker: "TATAMOTORS", name: "Tata Motors Ltd", sector: "Automobile & EV", current_price: 986.40, open: 968.0, high: 994.0, low: 965.0, prev_close: 970.0, change: 16.40, change_pct: 1.69, volume: 7200000, beta: 1.45 },
-  HINDUNILVR: { ticker: "HINDUNILVR", name: "Hindustan Unilever Ltd", sector: "Consumer Goods (FMCG)", current_price: 2735.00, open: 2740.0, high: 2750.0, low: 2728.0, prev_close: 2742.0, change: -7.00, change_pct: -0.26, volume: 1450000, beta: 0.65 },
-  ITC: { ticker: "ITC", name: "ITC Limited", sector: "Conglomerate & FMCG", current_price: 492.30, open: 489.0, high: 495.0, low: 488.0, prev_close: 490.5, change: 1.80, change_pct: 0.37, volume: 5100000, beta: 0.70 },
+  RELIANCE: { ticker: "RELIANCE", name: "Reliance Industries Ltd", sector: "Energy & Retail", current_price: 2942.50, open: 2920.0, high: 2958.0, low: 2915.0, prev_close: 2925.0, change: 17.50, change_pct: 0.60, volume: 4820000, beta: 1.15, signal: "BULLISH", confidence: 0.82, catalyst: "Green energy capex & retail margin expansion" },
+  TCS: { ticker: "TCS", name: "Tata Consultancy Services", sector: "Information Tech", current_price: 4185.00, open: 4160.0, high: 4210.0, low: 4150.0, prev_close: 4170.0, change: 15.00, change_pct: 0.36, volume: 2150000, beta: 0.85, signal: "NEUTRAL", confidence: 0.68, catalyst: "Large deal ramp-up offset by BFSI softness" },
+  HDFCBANK: { ticker: "HDFCBANK", name: "HDFC Bank Limited", sector: "Financial Services", current_price: 1648.20, open: 1635.0, high: 1655.0, low: 1630.0, prev_close: 1640.0, change: 8.20, change_pct: 0.50, volume: 6300000, beta: 1.05, signal: "BULLISH", confidence: 0.79, catalyst: "Deposit growth acceleration & LDR normalization" },
+  INFY: { ticker: "INFY", name: "Infosys Limited", sector: "Information Tech", current_price: 1824.60, open: 1845.0, high: 1850.0, low: 1818.0, prev_close: 1842.0, change: -17.40, change_pct: -0.94, volume: 3900000, beta: 1.20, signal: "BEARISH", confidence: 0.74, catalyst: "Discretionary tech spend delay in EU/US" },
+  ICICIBANK: { ticker: "ICICIBANK", name: "ICICI Bank Ltd", sector: "Financial Services", current_price: 1215.80, open: 1205.0, high: 1222.0, low: 1202.0, prev_close: 1208.0, change: 7.80, change_pct: 0.65, volume: 4100000, beta: 1.10, signal: "BULLISH", confidence: 0.86, catalyst: "Industry-leading ROA (2.3%) and strong NIM defense" },
+  TATAMOTORS: { ticker: "TATAMOTORS", name: "Tata Motors Ltd", sector: "Automobile & EV", current_price: 986.40, open: 968.0, high: 994.0, low: 965.0, prev_close: 970.0, change: 16.40, change_pct: 1.69, volume: 7200000, beta: 1.45, signal: "BULLISH", confidence: 0.88, catalyst: "JLR order book expansion & EV market share leadership" },
+  HINDUNILVR: { ticker: "HINDUNILVR", name: "Hindustan Unilever Ltd", sector: "Consumer Goods (FMCG)", current_price: 2735.00, open: 2740.0, high: 2750.0, low: 2728.0, prev_close: 2742.0, change: -7.00, change_pct: -0.26, volume: 1450000, beta: 0.65, signal: "NEUTRAL", confidence: 0.64, catalyst: "Rural demand bottoming with steady price stability" },
+  ITC: { ticker: "ITC", name: "ITC Limited", sector: "Conglomerate & FMCG", current_price: 492.30, open: 489.0, high: 495.0, low: 488.0, prev_close: 490.5, change: 1.80, change_pct: 0.37, volume: 5100000, beta: 0.70, signal: "BULLISH", confidence: 0.76, catalyst: "Hotel demerger unlocking & cigarette EBIT stability" },
 };
 
 let userProfile = {
@@ -41,6 +41,20 @@ let userProfile = {
   capital_preservation_priority: false,
   monthly_budget_inr: 50000.0,
   preferred_sectors: ["Technology", "Banking", "Energy", "Automobile"],
+  holdings: [
+    { ticker: "RELIANCE", name: "Reliance Industries", shares: 45, avg_buy_price: 2650.0, current_price: 2942.50, current_value_inr: 132412.5, weight_pct: 28.5, pnl_amount_inr: 13162.5, pnl_pct: 11.04, sector: "Energy & Retail" },
+    { ticker: "TCS", name: "Tata Consultancy Services", shares: 25, avg_buy_price: 3950.0, current_price: 4185.00, current_value_inr: 104625.0, weight_pct: 22.5, pnl_amount_inr: 5875.0, pnl_pct: 5.95, sector: "Information Tech" },
+    { ticker: "HDFCBANK", name: "HDFC Bank Ltd", shares: 60, avg_buy_price: 1580.0, current_price: 1648.20, current_value_inr: 98892.0, weight_pct: 21.3, pnl_amount_inr: 4092.0, pnl_pct: 4.32, sector: "Financial Services" },
+    { ticker: "TATAMOTORS", name: "Tata Motors Ltd", shares: 80, avg_buy_price: 820.0, current_price: 986.40, current_value_inr: 78912.0, weight_pct: 17.0, pnl_amount_inr: 13312.0, pnl_pct: 20.29, sector: "Automobile & EV" },
+    { ticker: "INFY", name: "Infosys Ltd", shares: 28, avg_buy_price: 1890.0, current_price: 1824.60, current_value_inr: 51088.8, weight_pct: 10.7, pnl_amount_inr: -1831.2, pnl_pct: -3.46, sector: "Information Tech" },
+  ],
+  portfolio_concentration: {
+    holdings: { RELIANCE: 28.5, TCS: 22.5, HDFCBANK: 21.3, TATAMOTORS: 17.0, INFY: 10.7 },
+    sector_exposure: { "Energy & Retail": 28.5, "Information Tech": 33.2, "Financial Services": 21.3, "Automobile & EV": 17.0 },
+    target_stock_weight_pct: 28.5,
+    target_sector: "Energy & Retail",
+    target_sector_weight_pct: 28.5,
+  }
 };
 
 const latencyLogs: any[] = [
@@ -264,35 +278,81 @@ app.post(["/run-analysis", "/api/run-analysis"], (req, res) => {
     };
 
     // Personalization Layer
-    const riskTol = profile.risk_tolerance || "MODERATE";
+    const riskTol = (profile.risk_tolerance || "MODERATE").toUpperCase();
     const maxCap = profile.max_portfolio_allocation_pct || 15.0;
     const budget = profile.monthly_budget_inr || 50000.0;
-    const allocPct = synthSig === "BULLISH"
-      ? (riskTol === "CONSERVATIVE" ? Math.min(maxCap * 0.5, 6.0) : riskTol === "AGGRESSIVE" ? Math.min(maxCap, 18.0) : Math.min(maxCap * 0.85, 12.0))
-      : synthSig === "BEARISH" ? 0.0 : Math.min(maxCap * 0.4, 5.0);
+    const holdings = profile.holdings || userProfile.holdings || [];
+    
+    // Check concentration
+    const currentHolding = holdings.find((h: any) => h.ticker === ticker);
+    const existingWeight = currentHolding ? currentHolding.weight_pct : 0;
+    const isConcentrated = existingWeight >= 15.0;
+
+    let personalizedSignal = synthSig;
+    let downgraded = false;
+    let cautionNotes: string[] = [];
+
+    if (riskTol === "CONSERVATIVE") {
+      if (synthSig === "BULLISH" && synthRes.aggregate_confidence < 0.80) {
+        personalizedSignal = "NEUTRAL";
+        downgraded = true;
+        cautionNotes.push(`Signal downgraded from BUY to HOLD because confidence (${Math.round(synthRes.aggregate_confidence * 100)}%) is below conservative threshold of 80%.`);
+      }
+      cautionNotes.push("Strict capital preservation mandate active — max 5% position size with tight trailing stop loss.");
+    } else if (riskTol === "AGGRESSIVE") {
+      cautionNotes.push("Growth-oriented alpha mandate active — tactical positioning with wider volatility tolerance.");
+    } else {
+      cautionNotes.push("Balanced moderate allocation with diversified factor weights.");
+    }
+
+    if (isConcentrated) {
+      cautionNotes.push(`CONCENTRATION WARNING: Your portfolio already holds ${existingWeight}% in ${ticker} (exceeds safe 15% single-stock ceiling). Additional capital allocation is restricted.`);
+    }
+
+    const allocPct = personalizedSignal === "BULLISH"
+      ? (isConcentrated ? 2.5 : riskTol === "CONSERVATIVE" ? Math.min(maxCap * 0.5, 5.0) : riskTol === "AGGRESSIVE" ? Math.min(maxCap, 18.0) : Math.min(maxCap * 0.8, 10.0))
+      : personalizedSignal === "BEARISH" ? 0.0 : Math.min(maxCap * 0.3, 4.0);
+
+    const recommendedAction = personalizedSignal === "BULLISH"
+      ? (riskTol === "CONSERVATIVE" ? "STAGGERED_SIP_BUY" : riskTol === "AGGRESSIVE" ? "AGGRESSIVE_GROWTH_BUY" : "ACCUMULATE_ON_DIPS")
+      : personalizedSignal === "BEARISH" ? "TRIM_OR_HEDGE" : "HOLD_AND_MONITOR";
+
+    let personalizedMessage = "";
+    if (riskTol === "CONSERVATIVE") {
+      personalizedMessage = downgraded
+        ? `Given your CONSERVATIVE profile, we downgraded ${ticker} to Neutral. While the model detected upside, aggregate confidence (${Math.round(synthRes.aggregate_confidence * 100)}%) did not meet your 80% safety requirement.`
+        : `For your CONSERVATIVE profile, ${ticker} is verified as high-conviction with strict ${allocPct}% sizing (₹${Math.round(budget * (allocPct / 100))}) and defensive stop loss at ₹${Math.round(price * 0.94)}.`;
+    } else if (riskTol === "AGGRESSIVE") {
+      personalizedMessage = `For your AGGRESSIVE growth profile, ${ticker} offers strong breakout upside (+${Math.round(((price * 1.25 - price) / price) * 100)}% 12M target). Recommended position size: ${allocPct}% (₹${Math.round(budget * (allocPct / 100))}).`;
+    } else {
+      personalizedMessage = `For your MODERATE balanced profile, ${ticker} provides a steady risk-adjusted setup. Stagger entries across pullbacks with a ${allocPct}% portfolio weight.`;
+    }
+
+    if (isConcentrated) {
+      personalizedMessage += ` Note: High portfolio concentration in ${ticker} (${existingWeight}%) was detected. Sizing has been scaled back to mitigate downside correlation.`;
+    }
 
     const persRes = {
       user_id: profile.user_id || "user_retail_01",
       ticker,
       profile_applied: `${riskTol} (${profile.investment_horizon || "MEDIUM_TERM"})`,
-      recommended_action: synthSig === "BULLISH"
-        ? (riskTol === "CONSERVATIVE" ? "STAGGERED_SIP_BUY" : riskTol === "AGGRESSIVE" ? "STRONG_BUY_ALPHA" : "ACCUMULATE_ON_DIPS")
-        : synthSig === "BEARISH" ? "TRIM_OR_HEDGE" : "HOLD_AND_MONITOR",
+      recommended_action: recommendedAction,
+      personalized_signal: personalizedSignal,
+      downgraded,
+      personalization_applied: true,
+      personalized_message: personalizedMessage,
       suggested_allocation_pct: allocPct,
       suggested_capital_inr: Math.round(budget * (allocPct / 100.0)),
-      stop_loss_price: Math.round(price * 0.93),
+      stop_loss_price: Math.round(price * (riskTol === "CONSERVATIVE" ? 0.94 : 0.90)),
       target_price_12m: Math.round(price * (synthSig === "BULLISH" ? 1.24 : 1.05)),
-      risk_alignment_score: 88.5,
-      actionable_summary: synthSig === "BULLISH"
-        ? `For your ${riskTol} profile, ${ticker} presents a high-conviction setup. Recommended allocation of ${allocPct}% (₹${Math.round(budget * (allocPct / 100.0))}) with stop loss at ₹${Math.round(price * 0.93)}.`
-        : `Cautious stance recommended for ${ticker} matching your risk profile.`,
-      retail_suitability_badge: synthSig === "BULLISH" ? "HIGH_SUITABILITY" : "PROCEED_WITH_CAUTION",
-      risk_warnings: [
-        "Maintain disciplined position sizing within your pre-set allocation limit.",
-      ],
+      risk_alignment_score: isConcentrated ? 68.0 : riskTol === "CONSERVATIVE" ? 94.0 : 88.5,
+      actionable_summary: personalizedMessage,
+      retail_suitability_badge: isConcentrated ? "CONCENTRATION_ALERT" : downgraded ? "SAFETY_HOLD" : "HIGH_SUITABILITY",
+      risk_warnings: cautionNotes,
       implementation_steps: [
-        `Deploy initial 50% tranche (₹${Math.round(budget * (allocPct / 100.0) * 0.5)}) at current levels.`,
-        `Set price alert at trailing stop loss level ₹${Math.round(price * 0.93)}.`,
+        `Deploy initial 50% tranche (₹${Math.round(budget * (allocPct / 100.0) * 0.5)}) at current market price ₹${price.toLocaleString("en-IN")}.`,
+        `Set automated stop-loss alert at ₹${Math.round(price * (riskTol === "CONSERVATIVE" ? 0.94 : 0.90)).toLocaleString("en-IN")}.`,
+        isConcentrated ? `Review and rebalance ${ticker} position to reduce overall single-stock risk exposure.` : `Monitor quarterly SEBI filing disclosures and earnings calls for thesis updates.`,
       ],
       latency_ms: 12.4,
     };

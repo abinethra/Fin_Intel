@@ -2,6 +2,19 @@ export type AgentSignal = "BULLISH" | "BEARISH" | "NEUTRAL";
 export type RiskTolerance = "CONSERVATIVE" | "MODERATE" | "AGGRESSIVE";
 export type InvestmentHorizon = "SHORT_TERM" | "MEDIUM_TERM" | "LONG_TERM";
 
+export interface PortfolioHolding {
+  ticker: string;
+  name: string;
+  shares: number;
+  avg_buy_price: number;
+  current_price: number;
+  current_value_inr: number;
+  weight_pct: number;
+  pnl_amount_inr: number;
+  pnl_pct: number;
+  sector: string;
+}
+
 export interface StockQuote {
   ticker: string;
   name: string;
@@ -15,6 +28,9 @@ export interface StockQuote {
   change_pct: number;
   volume: number;
   beta: number;
+  signal: AgentSignal;
+  confidence: number;
+  catalyst?: string;
   history?: Array<{
     date: string;
     timestamp: string;
@@ -34,6 +50,14 @@ export interface UserRiskProfile {
   capital_preservation_priority: boolean;
   monthly_budget_inr: number;
   preferred_sectors: string[];
+  holdings?: PortfolioHolding[];
+  portfolio_concentration?: {
+    holdings: Record<string, number>;
+    sector_exposure: Record<string, number>;
+    target_stock_weight_pct?: number;
+    target_sector?: string;
+    target_sector_weight_pct?: number;
+  };
 }
 
 export interface TechnicalIndicators {
