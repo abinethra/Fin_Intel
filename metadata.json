@@ -1,0 +1,6 @@
+{
+  "name": "Multi-Agent Financial Intelligence System",
+  "description": "Multi-agent retail investment intelligence MVP featuring parallel Technical, Sentiment, and Fundamentals RAG agents, synthesis conflict resolution, and personalized risk profiling.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
